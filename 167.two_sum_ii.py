@@ -13,3 +13,9 @@ class Solution:
                l += 1
 
        return [] 
+# Time & Space Complexity
+#
+#     Time complexity: O(n)
+#     Space complexity: O(1)
+
+ 
