@@ -1,3 +1,5 @@
+import re
+
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         l, r = 0, len(s) - 1 
@@ -15,7 +17,9 @@ class Solution:
     def alphaNum(self, c):
         # ascii 65-90 for A-Z, 
         # regardless get ascii using ord
-        return (ord('A') <= ord(c) <= ord('Z') or
-                ord('a') <= ord(c) <= ord('z') or
-                ord('0') <= ord(c) <= ord('9')) 
+        # return (ord('A') <= ord(c) <= ord('Z') or
+        #         ord('a') <= ord(c) <= ord('z') or
+        #         ord('0') <= ord(c) <= ord('9')) 
+        pattern = r'^[a-zA-Z0-9]$'
+        return re.match(pattern, c) is not None
         
