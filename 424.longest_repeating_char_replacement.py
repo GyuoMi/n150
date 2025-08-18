@@ -1,0 +1,16 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        res = 0
+        count = {}
+        l = 0
+
+        for r in range(len(s)):
+            count[s[r]] = 1 + count.get(s[r], 0)
+            
+            while (r - l + 1) - max(count.values()) > k:
+                # shift left pointer when the amount of replacements is greater than allowed (k)
+                # before incrementing count of char at left pos
+                count[s[l]] -= 1
+                l += 1
+            res = max(res, r - l + 1)
+        return res
