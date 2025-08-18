@@ -3,11 +3,13 @@ class Solution:
         res = 0
         count = {}
         l = 0
+        maxf = 0
 
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r], 0)
+            maxf = max(maxf, count[s[r]])
             
-            while (r - l + 1) - max(count.values()) > k:
+            while (r - l + 1) - maxf > k:
                 # shift left pointer when the amount of replacements is greater than allowed (k)
                 # before incrementing count of char at left pos
                 count[s[l]] -= 1
