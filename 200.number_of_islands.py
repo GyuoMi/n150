@@ -24,6 +24,43 @@
 #                     dfs(row, col)
 
 #         return num_islands
+
+# BFS solution
+# class Solution:
+#     def numIslands(self, grid: List[List[str]]) -> int:
+#         rows, cols = len(grid), len(grid[0])
+#         visit = set()
+#         islands = 0
+
+#         def bfs(r, c):
+#             q = collections.deque()
+#             visit.add((r,c))
+#             q.append((r,c))
+            
+            # while q:
+                # if we change popleft to just pop, this will now act as a dfs
+                # since it pops the most recent element (popright) instead of the first
+                # iterative instead of recursive
+
+#                 row, col = q.popleft()
+#                 dirs = [[1,0], [-1, 0], [0,1], [0, -1]]
+
+#                 for dr, dc in dirs:
+#                     r, c = row + dr, col + dc
+#                     if (r in range(rows) and 
+#                         c in range(cols) and 
+#                         grid[r][c] == "1" and 
+#                         (r, c) not in visit):
+#                         q.append((r,c))
+#                         visit.add((r,c))
+
+#         for r in range(rows):
+#             for c in range(cols):
+#                 if grid[r][c] == "1" and (r, c) not in visit:
+#                     bfs(r, c)
+#                     islands += 1
+#         return islands
+
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         rows, cols = len(grid), len(grid[0])
