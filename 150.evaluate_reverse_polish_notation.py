@@ -1,20 +1,39 @@
+# stack solution
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        def dfs():
-            token = tokens.pop()
-            if token not in "+-*/":
-                return int(token)
+        stack = []
+        for c in tokens:
+            if c == "+":
+                stack.append(stack.pop() + stack.pop())
+            elif c == "-":
+                a, b = stack.pop(), stack.pop()
+                stack.append(b - a)
+            elif c == "*":
+                stack.append(stack.pop() * stack.pop())
+            elif c == "/":
+                a, b = stack.pop(), stack.pop()
+                stack.append(int(float(b) / a))
+            else:
+                stack.append(int(c))
+        return stack[0]
 
-            r = dfs()
-            l = dfs()
+# class Solution:
+#     def evalRPN(self, tokens: List[str]) -> int:
+#         def dfs():
+#             token = tokens.pop()
+#             if token not in "+-*/":
+#                 return int(token)
 
-            if token == '+':
-                return l + r
-            elif token == '-':
-                return l - r
-            elif token == '*':
-                return l * r
-            elif token == '/':
-                return int(l / r)
+#             r = dfs()
+#             l = dfs()
 
-        return dfs()
+#             if token == '+':
+#                 return l + r
+#             elif token == '-':
+#                 return l - r
+#             elif token == '*':
+#                 return l * r
+#             elif token == '/':
+#                 return int(l / r)
+
+#         return dfs()
