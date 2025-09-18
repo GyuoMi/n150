@@ -4,22 +4,21 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
+        res = 0
 
-        l_height = self.maxHeight(root.left)
-        r_height = self.maxHeight(root.right)
-        diameter = l_height + r_height
+        def dfs(root):
+            nonlocal res
 
-        sub = max(self.diameterOfBinaryTree(root.left),
-                  self.diameterOfBinaryTree(root.right))
-        
-        return max(diameter, sub)
-    
-    def maxHeight(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-        
-        return 1 + max(self.maxHeight(root.left), self.maxHeight(root.right))
+            if not root:
+                return 0
+            left = dfs(root.left)
+            right = dfs(root.right)
+            res = max(res, left + right)
+
+            return 1 + max(left, right)
+
+        dfs(root)
+        return res
