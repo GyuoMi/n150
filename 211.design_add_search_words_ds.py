@@ -31,7 +31,7 @@ class WordDictionary:
                     for child in curr.children.values():
                         if dfs(i + 1, child):
                             return True
-                        return False
+                    return False
                 else:
                     if c not in curr.children:
                         return False
